@@ -17,6 +17,7 @@ import { categories } from './domain';
 import { Dialog } from './components';
 import {
   acceptanceChecklist,
+  acceptanceNote,
   captureRules,
   orderTypePhotoTips,
   photoPhases,
@@ -320,6 +321,10 @@ export function RegulationGuide({
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+            </section>
+            <section className="guide-section">
+              <h3>Срок приёмки</h3>
+              <p>{acceptanceNote}</p>
             </section>
             <section className="guide-section">
               <h3>Если кадр снять невозможно</h3>

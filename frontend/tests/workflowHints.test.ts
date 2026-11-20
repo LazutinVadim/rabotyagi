@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   acceptanceChecklist,
+  acceptanceNote,
   captureRules,
   getOrderHints,
   orderTypePhotoTips,
@@ -70,6 +71,7 @@ test('подсказки соответствуют этапу и роли', () 
 
   const client = getOrderHints('workFinished', 'client');
   assert.match(client[0].summary, /Сравните кадры/);
+  assert.match(client[0].bullets?.join(' ') ?? '', /48 часов/);
 
   assert.equal(getOrderHints('cancelled', 'worker')[0].id, 'cancelled');
   assert.equal(getOrderHints('cancelled', 'admin')[0].id, 'cancelled');
@@ -91,6 +93,8 @@ test('фоточек-лист содержит обязательные кадр
   assert.ok(captureRules.some((rule) => rule.includes('152-ФЗ')));
   assert.ok(captureRules.some((rule) => rule.includes('галереи')));
   assert.equal(acceptanceChecklist.length, 4);
+  assert.match(acceptanceNote, /48 часов/);
+  assert.match(acceptanceNote, /договор/);
   assert.equal(roleResponsibilities.length, 4);
 });
 
